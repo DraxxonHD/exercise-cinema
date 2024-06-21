@@ -1,6 +1,7 @@
 #include "customer.h"
 #include "names.h"
 
+
 void CCustomer::SetNumOfVisitor(int _NumOfVisitor)
 {
     m_NumOfVisitor = _NumOfVisitor;
