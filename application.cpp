@@ -56,15 +56,15 @@ void CApplication::Run()
 	for (int i = 0; i < s_NumOfCustomer; i++)
 	{
 
-		int NumOfVisitor = m_pCustomers[i]->GetNumOfVisitor();
-		ETimes TimeOfMovie = m_pCustomers[i]->GetTimeOfMovie();
-		EMovies Movie = m_pCustomers[i]->GetMovie();
-		ENames pName = m_pCustomers[i]->GetName();
+		CCustomer& Customer = *m_pCustomers[i];
+		int NumOfVisitor = Customer.GetNumOfVisitor();
+		ETimes TimeOfMovie = Customer.GetTimeOfMovie();
+		EMovies Movie = Customer.GetMovie();
+		ENames pName = Customer.GetName();
 
 		// customer makes an order
 		SOrder& Order = CReceiving_Office::GetInstance().CreateOrder(NumOfVisitor, TimeOfMovie , Movie, pName);
 
-		CCustomer& Customer = *m_pCustomers[i];
 
 		// order is been given to processing office to check the order
 		if (CProcessing_Office::GetInstance().IsValidOrder(Order))
