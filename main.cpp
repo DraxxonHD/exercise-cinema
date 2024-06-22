@@ -1,8 +1,8 @@
-#include "application.h"
+#include "scene.h"
 
 int main()
 {
-	CApplication App;
+	CScene App;
 
 	App.Initialize();
 	App.Run();

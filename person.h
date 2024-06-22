@@ -5,7 +5,7 @@ enum class ENames;
 enum class ETimes;
 struct STicket;
 
-class CCustomer
+class CPerson
 {
 public:
 

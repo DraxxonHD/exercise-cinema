@@ -9,7 +9,7 @@ class CProcessing_Office
 public:
 
 	static CProcessing_Office& GetInstance();
-	void DestroyInstance();
+	static void DestroyInstance();
 
 	bool IsValidOrder(SOrder& _order);
 	int GetCapacityAt(int _time, int _movie);

@@ -54,6 +54,8 @@ STicket* CReceiving_Office::PickUpTicket(ENames _name)
         {
             STicket* Ticket = m_TicketStorage[i];
             m_TicketStorage[i] = nullptr;
+
+            ////////////////////////////////
             return Ticket;
             break;
         }
@@ -70,12 +72,15 @@ STicket** CReceiving_Office::GetTicketStorage()
 
 void CReceiving_Office::PutTicketInStorage(STicket& _ticket)
 {
+
     assert(m_SizeOfStorage <= s_StorageCapacity);
     for (int i = 0; i < s_StorageCapacity; i++)
     {
         if (m_TicketStorage[i] == nullptr)
         {
             m_TicketStorage[i] = &_ticket;
+
+            ////////////////////
             break;
         }
     }

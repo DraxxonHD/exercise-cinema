@@ -8,7 +8,7 @@ class CTicket_Office
 public:
 
 	static CTicket_Office& GetInstance();
-	void DestroyInstance();
+	static void DestroyInstance();
 
 	STicket& CreateTicket(SOrder& _order);
 	void DeleteOrder(SOrder& _order);
