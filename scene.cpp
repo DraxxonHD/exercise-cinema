@@ -78,14 +78,13 @@ void CScene::Run()
 				if(pTicket != nullptr)
 				{
 					std::cout << "Person: " << static_cast<int>(Person.GetName()) << "| Got The Ticket for: " << Person.GetNumOfVisitor() << " Visitor | For The Movie: " << static_cast<int>(Person.GetMovie()) << " | For the Time: " << static_cast<int>(Person.GetTimeOfMovie()) << std::endl;
-					std::cout << "and picked it up" << std::endl;
 				}
 	}
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			std::cout << CProcessing_Office::GetInstance().GetCapacityAt(static_cast<ETimes>(i), static_cast<EMovies>(j)) << std::endl;
-		}
-	}
+//	for (int i = 0; i < 3; i++)
+//	{
+//		for (int j = 0; j < 3; j++)
+//		{
+//			std::cout << CProcessing_Office::GetInstance().GetCapacityAt(static_cast<ETimes>(i), static_cast<EMovies>(j)) << std::endl;
+//		}
+//	}
 }

@@ -29,7 +29,7 @@ void CTicket_Office::DestroyInstance()
     delete s_pSingleton;
 }
 
-STicket& CTicket_Office::CreateTicket(SOrder& _order)
+void CTicket_Office::CreateTicket(SOrder& _order)
 {
     // TODO: hier return-Anweisung eingeben
     STicket* Ticket = new STicket();
@@ -42,7 +42,6 @@ STicket& CTicket_Office::CreateTicket(SOrder& _order)
     CProcessing_Office::GetInstance().ReduceSeatsAt(Ticket->m_NumOfVisitor, static_cast<ETimes>(Ticket->m_TimeOfMovie), static_cast<EMovies>(Ticket->m_Movie));
     CReceiving_Office::GetInstance().PutTicketInStorage(*Ticket);
     ///////////////////7
-    return *Ticket;
 }
 
 void CTicket_Office::DeleteOrder(SOrder& _order)

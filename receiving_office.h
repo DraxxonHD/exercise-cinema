@@ -17,7 +17,7 @@ public:
 
 public:
 
-	SOrder& CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, ENames _name);
+	void CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, ENames _name);
 	STicket* PickUpTicket(ENames _name);
 	STicket** GetTicketStorage();
 	bool IsTicketStorageFull();

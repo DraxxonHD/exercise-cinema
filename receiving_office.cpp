@@ -34,7 +34,7 @@ void CReceiving_Office::DestroyInstance()
     delete s_pSingleton;
 }
 
-SOrder& CReceiving_Office::CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, ENames _name)
+void CReceiving_Office::CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, ENames _name)
 {
     // TODO: hier return-Anweisung eingeben
     SOrder* Order = new SOrder();
@@ -59,7 +59,6 @@ SOrder& CReceiving_Office::CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, E
         CTicket_Office::GetInstance().DeleteOrder(*Order);
     }
     ///////////////////7
-    return *Order;
 }
 
 STicket* CReceiving_Office::PickUpTicket(ENames _name)
@@ -75,6 +74,7 @@ STicket* CReceiving_Office::PickUpTicket(ENames _name)
 
 
                 STicket* Ticket = m_TicketStorage[i];
+                // clear storage slot after ticket got picked up
                 m_TicketStorage[i] = nullptr;
                 CReceiving_Office::GetInstance().IncrementStorageSize();
                 ////////////////////////////////

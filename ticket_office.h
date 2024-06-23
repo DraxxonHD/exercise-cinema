@@ -10,7 +10,7 @@ public:
 	static CTicket_Office& GetInstance();
 	static void DestroyInstance();
 
-	STicket& CreateTicket(SOrder& _order);
+	void CreateTicket(SOrder& _order);
 	void DeleteOrder(SOrder& _order);
 
 private:
