@@ -12,10 +12,11 @@ public:
 	static void DestroyInstance();
 
 	bool IsValidOrder(SOrder& _order);
-	int GetCapacityAt(int _time, int _movie);
+	int GetCapacityAt(ETimes _time, EMovies _movie);
+	void ReduceSeatsAt(int _NumOfVisitor, ETimes _time, EMovies _movie);
 public:
 
-	static constexpr int s_MaxNumOfVisitor = 50;
+	static constexpr int s_MaxNumOfVisitor = 5;
 private:
 
 	CProcessing_Office();

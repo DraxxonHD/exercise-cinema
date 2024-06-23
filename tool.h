@@ -12,6 +12,6 @@ public:
 	static ENames RandomName();
 	static EMovies RandomMovie();
 	static ETimes RandomTime();
-
+	static bool RandomBool();
 	CTool();
 };

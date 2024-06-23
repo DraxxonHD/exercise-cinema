@@ -20,8 +20,11 @@ public:
 	SOrder& CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, ENames _name);
 	STicket* PickUpTicket(ENames _name);
 	STicket** GetTicketStorage();
+	bool IsTicketStorageFull();
 
 	void PutTicketInStorage(STicket& _ticket);
+	void IncrementStorageSize();
+	void DecrementStorageSize();
 
 private:
 
@@ -33,7 +36,7 @@ private:
 
 	static CReceiving_Office* s_pSingleton;
 
-	static constexpr int s_StorageCapacity = 20;
+	static constexpr int s_StorageCapacity = 5;
 private:
 
 	STicket* m_TicketStorage[s_StorageCapacity];

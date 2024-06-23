@@ -1,12 +1,14 @@
 #include "processing_office.h"
+#include "ticket_office.h"
 #include "order.h"
 #include "times.h"
 
+#include <iostream>
+#include <assert.h>
 CProcessing_Office* CProcessing_Office::s_pSingleton = nullptr;
 CProcessing_Office::CProcessing_Office()
     :m_TimeOfMovie(ETimes(2))
     ,m_Movie(EMovies(2))
-    ,m_Capacity()
 {
     for (int i = 0; i < 3; i++)
     {
@@ -38,7 +40,8 @@ bool CProcessing_Office::IsValidOrder(SOrder& _order)
     // TODO: hier return-Anweisung eingeben
 
     // Check Cap
-    if (_order.m_NumOfVisitor <= m_Capacity[static_cast<int>(_order.m_TimeOfMovie)][static_cast<int>(_order.m_Movie)])
+    int currentcap = CProcessing_Office::GetInstance().GetCapacityAt(_order.m_TimeOfMovie, _order.m_Movie);
+    if (_order.m_NumOfVisitor <= currentcap)
     {
         // check Time
         if (_order.m_TimeOfMovie <= m_TimeOfMovie)
@@ -46,7 +49,7 @@ bool CProcessing_Office::IsValidOrder(SOrder& _order)
             // check Movie
             if (_order.m_Movie <= m_Movie)
             {
-                m_Capacity[static_cast<int>(_order.m_TimeOfMovie)][static_cast<int>(_order.m_Movie)] -= _order.m_NumOfVisitor;
+                ///////////////////7
                 return true;
             }
 
@@ -57,10 +60,15 @@ bool CProcessing_Office::IsValidOrder(SOrder& _order)
     return false;
 }
 
-int CProcessing_Office::GetCapacityAt(int _time, int _movie)
+int CProcessing_Office::GetCapacityAt(ETimes _time, EMovies _movie)
 {
 
-    return m_Capacity[_time][_movie];
+    return m_Capacity[static_cast<int>(_time)][static_cast<int>(_movie)];
+}
+
+void CProcessing_Office::ReduceSeatsAt(int _NumOfVisitor, ETimes _time, EMovies _movie)
+{
+    m_Capacity[static_cast<int>(_time)][static_cast<int>(_movie)] -= _NumOfVisitor;
 }
 
 CProcessing_Office::~CProcessing_Office()

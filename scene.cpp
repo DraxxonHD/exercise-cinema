@@ -25,15 +25,12 @@ void CScene::Initialize()
 	EMovies RandMovie = Tool.RandomMovie();
 	int RandNumOfVisitor = Tool.RandomNumRange(1, 10);
 	ETimes RandTime = Tool.RandomTime();
-	ENames RandName = Tool.RandomName();
-
+	//ENames RandName = Tool.RandomName();
+	ENames RandName = static_cast<ENames>(i);
 	pPerson->SetMovie(RandMovie);
 	pPerson->SetNumOfVisitor(RandNumOfVisitor);
 	pPerson->SetTimeOfMovie(RandTime);
 	pPerson->SetName(RandName);
-
-
-
 
 	}
 
@@ -56,8 +53,10 @@ void CScene::Finalize()
 void CScene::Run()
 {
 	//serve each person
+	bool RandBool = false;
 	for (int i = 0; i < s_NumOfPerson; i++)
 	{
+		CTool Tool;
 
 		CPerson& Person = *m_pPersons[i];
 		int NumOfVisitor = Person.GetNumOfVisitor();
@@ -66,39 +65,27 @@ void CScene::Run()
 		ENames pName = Person.GetName();
 
 		// Person makes an order
-		SOrder& Order = CReceiving_Office::GetInstance().CreateOrder(NumOfVisitor, TimeOfMovie , Movie, pName);
+		CReceiving_Office::GetInstance().CreateOrder(NumOfVisitor, TimeOfMovie, Movie, pName);
 
+		RandBool = !RandBool;
 
-		// order is been given to processing office to check the order
-		if (CProcessing_Office::GetInstance().IsValidOrder(Order))
-		{
-			// after check give it to ticket office
-			STicket Ticket = CTicket_Office::GetInstance().CreateTicket(Order);
-			CReceiving_Office::GetInstance().PutTicketInStorage(Ticket);
-			// try to pick up ticket
-			STicket* PickUpTicket = CReceiving_Office::GetInstance().PickUpTicket(Person.GetName());
+			//  pick up ticket/no ticket
+			STicket* pTicket = CReceiving_Office::GetInstance().PickUpTicket(Person.GetName());
 
 			// give ticket to Person
-			Person.SetTicket(*PickUpTicket);
+				Person.SetTicket(*pTicket);
 			// Who got ticket?
-				std::cout << "Person: " << static_cast<int>(Person.GetName()) << "| Got The Ticket for: " << Person.GetNumOfVisitor() << " Visitor | For The Movie: " << static_cast<int>(Person.GetMovie()) << " | For the Time: " << static_cast<int>(Person.GetTimeOfMovie()) << std::endl;
-			
-		}
-		else
-		{
-			//Who got no ticket?
-			std::cout << "NO Ticket FOR: " << static_cast<int>(Person.GetName()) << std::endl;
-			CTicket_Office::GetInstance().DeleteOrder(Order);
-		}
+				if(pTicket != nullptr)
+				{
+					std::cout << "Person: " << static_cast<int>(Person.GetName()) << "| Got The Ticket for: " << Person.GetNumOfVisitor() << " Visitor | For The Movie: " << static_cast<int>(Person.GetMovie()) << " | For the Time: " << static_cast<int>(Person.GetTimeOfMovie()) << std::endl;
+					std::cout << "and picked it up" << std::endl;
+				}
 	}
-
-// Check Caps
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-
-	std::cout << CProcessing_Office::GetInstance().GetCapacityAt(i,j) << std::endl;
+			std::cout << CProcessing_Office::GetInstance().GetCapacityAt(static_cast<ETimes>(i), static_cast<EMovies>(j)) << std::endl;
 		}
 	}
 }

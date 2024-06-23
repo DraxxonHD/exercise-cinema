@@ -6,6 +6,10 @@
 #include <random>
 #include <time.h>
 
+CTool::CTool()
+{
+    srand(time(NULL));
+}
 
 
 int CTool::RandomNumRange(int _min, int _max)
@@ -32,7 +36,9 @@ ETimes CTool::RandomTime()
     return ETimes(RandNum);
 }
 
-CTool::CTool()
+bool CTool::RandomBool()
 {
-    srand(time(NULL));
+    bool RandBool = (CTool::RandomNumRange(0, 1));
+    return RandBool;
 }
+
