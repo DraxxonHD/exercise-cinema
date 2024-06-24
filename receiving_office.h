@@ -1,9 +1,8 @@
 #pragma once
-
+#include <string>
 
 enum class ETimes;
 enum class EMovies;
-enum class ENames;
 
 struct SOrder;
 struct STicket;
@@ -17,8 +16,8 @@ public:
 
 public:
 
-	void CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, ENames _name);
-	STicket* PickUpTicket(ENames _name);
+	void CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, std::string _pname);
+	STicket* PickUpTicket(std::string _pname);
 	STicket** GetTicketStorage();
 	bool IsTicketStorageFull();
 

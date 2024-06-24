@@ -5,6 +5,7 @@
 
 #include <random>
 #include <time.h>
+#include <string>
 
 CTool::CTool()
 {
@@ -18,10 +19,18 @@ int CTool::RandomNumRange(int _min, int _max)
     return RandomNum;
 }
 
-ENames CTool::RandomName()
+std::string CTool::RandomName()
 {
-    int RandNum = RandomNumRange(0, 39);
-    return ENames(RandNum);
+    char name[s_NameLength] = {};
+    char AsciiChar;
+    for (int i = 0; i < s_NameLength; i++) {
+        int AsciiValue = rand() % 26 + 97;
+        AsciiChar = (char)AsciiValue;
+        name[i] = AsciiChar;
+    }    
+
+    std::string strName(name, s_NameLength);
+    return strName;
 }
 
 EMovies CTool::RandomMovie()

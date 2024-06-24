@@ -4,10 +4,11 @@
 #include "order.h"
 #include "ticket.h"
 #include "names.h"
+#include "tool.h"
 
 #include <assert.h>
 #include <iostream>
-
+#include <string>
 CReceiving_Office* CReceiving_Office::s_pSingleton = nullptr;
 
 CReceiving_Office::CReceiving_Office()
@@ -34,15 +35,15 @@ void CReceiving_Office::DestroyInstance()
     delete s_pSingleton;
 }
 
-void CReceiving_Office::CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, ENames _name)
+void CReceiving_Office::CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, std::string _pname)
 {
     // TODO: hier return-Anweisung eingeben
     SOrder* Order = new SOrder();
-
     Order->m_NumOfVisitor = _NumOfVisitor;
     Order->m_TimeOfMovie = _TimeOfMovie;
     Order->m_Movie = _Movie;
-    Order->m_Name = _name;
+    Order->m_pName = _pname;
+
     if(!CReceiving_Office::GetInstance().IsTicketStorageFull())
     {
         if (CProcessing_Office::GetInstance().IsValidOrder(*Order))
@@ -61,7 +62,7 @@ void CReceiving_Office::CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMov
     ///////////////////7
 }
 
-STicket* CReceiving_Office::PickUpTicket(ENames _name)
+STicket* CReceiving_Office::PickUpTicket(std::string _pname)
 {
     // TODO: hier return-Anweisung eingeben
     for (int i = 0; i < s_StorageCapacity; i++)
@@ -69,7 +70,7 @@ STicket* CReceiving_Office::PickUpTicket(ENames _name)
         if (m_TicketStorage[i] != nullptr)
         {
 
-            if (m_TicketStorage[i]->m_Name == _name)
+            if (m_TicketStorage[i]->m_pName.compare(_pname) == 0)
             {
 
 

@@ -1,7 +1,7 @@
 #include "Person.h"
 #include "names.h"
-
-
+#include "tool.h"
+#include <string>
 void CPerson::SetNumOfVisitor(int _NumOfVisitor)
 {
     m_NumOfVisitor = _NumOfVisitor;
@@ -17,9 +17,9 @@ void CPerson::SetMovie(EMovies _movie)
     m_Movie = _movie;
 }
 
-void CPerson::SetName(ENames _name)
+void CPerson::SetName(std::string _pname)
 {
-    m_Name = _name;
+    m_pName = _pname;
 }
 
 void CPerson::SetTicket(STicket& _ticket)
@@ -42,9 +42,9 @@ EMovies CPerson::GetMovie()
     return m_Movie;
 }
 
-ENames CPerson::GetName()
+std::string CPerson::GetName()
 {
-    return m_Name;
+    return m_pName;
 }
 
 STicket* CPerson::GetTicket()

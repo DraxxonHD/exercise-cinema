@@ -1,6 +1,6 @@
 #pragma once
 
-enum class ENames
+enum class EoldNames
 {
 	Jesse,
 	Meza,
