@@ -7,11 +7,6 @@
 #include <time.h>
 #include <string>
 
-CTool::CTool()
-{
-    srand(time(NULL));
-}
-
 
 int CTool::RandomNumRange(int _min, int _max)
 {
@@ -49,5 +44,10 @@ bool CTool::RandomBool()
 {
     bool RandBool = (CTool::RandomNumRange(0, 1));
     return RandBool;
+}
+
+void CTool::SetRandSeed()
+{
+    srand(time(NULL));
 }
 

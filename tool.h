@@ -13,7 +13,7 @@ public:
 	static EMovies RandomMovie();
 	static ETimes RandomTime();
 	static bool RandomBool();
-	CTool();
+	static void SetRandSeed();
 public:
 	static constexpr int s_NameLength = 5;
 };

@@ -13,23 +13,22 @@
 #include <iostream>
 void CScene::Initialize()
 {
-	CTool Tool;
 	// Create people
 	for (int i = 0; i < s_NumOfPerson; i++)
 	{
-	CPerson* pPerson = new CPerson();
+		CPerson* pPerson = new CPerson();
 
-	m_pPersons[i] = pPerson;
+		m_pPersons[i] = pPerson;
 
-	// give people different wishes for movies
-	EMovies RandMovie = Tool.RandomMovie();
-	int RandNumOfVisitor = Tool.RandomNumRange(1, 10);
-	ETimes RandTime = Tool.RandomTime();
-	std::string pRandName = Tool.RandomName();
-	pPerson->SetMovie(RandMovie);
-	pPerson->SetNumOfVisitor(RandNumOfVisitor);
-	pPerson->SetTimeOfMovie(RandTime);
-	pPerson->SetName(pRandName);
+		// give people different wishes for movies
+		EMovies RandMovie = CTool::RandomMovie();
+		int RandNumOfVisitor = CTool::RandomNumRange(1, 10);
+		ETimes RandTime = CTool::RandomTime();
+		std::string pRandName = CTool::RandomName();
+		pPerson->SetMovie(RandMovie);
+		pPerson->SetNumOfVisitor(RandNumOfVisitor);
+		pPerson->SetTimeOfMovie(RandTime);
+		pPerson->SetName(pRandName);
 
 	}
 

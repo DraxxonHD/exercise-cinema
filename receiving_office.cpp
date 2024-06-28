@@ -78,9 +78,7 @@ STicket* CReceiving_Office::PickUpTicket(std::string _pname)
                 // clear storage slot after ticket got picked up
                 m_TicketStorage[i] = nullptr;
                 CReceiving_Office::GetInstance().IncrementStorageSize();
-                ////////////////////////////////
                 return Ticket;
-                break;
             }
         }
     }
@@ -113,7 +111,6 @@ void CReceiving_Office::PutTicketInStorage(STicket& _ticket)
         {
             m_TicketStorage[i] = &_ticket;
             CReceiving_Office::GetInstance().DecrementStorageSize();
-            ////////////////////
             break;
         }
     }
