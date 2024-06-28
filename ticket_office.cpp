@@ -1,6 +1,10 @@
 #include "ticket_office.h"
+#include "receiving_office.h"
+#include "processing_office.h"
 #include "ticket.h"
 #include "order.h"
+#include "times.h"
+#include "movies.h"
 
 CTicket_Office* CTicket_Office::s_pSingleton = nullptr;
 CTicket_Office::CTicket_Office() = default;
@@ -25,7 +29,7 @@ void CTicket_Office::DestroyInstance()
     delete s_pSingleton;
 }
 
-STicket& CTicket_Office::CreateTicket(SOrder& _order)
+void CTicket_Office::CreateTicket(SOrder& _order)
 {
     // TODO: hier return-Anweisung eingeben
     STicket* Ticket = new STicket();
@@ -33,9 +37,11 @@ STicket& CTicket_Office::CreateTicket(SOrder& _order)
     Ticket->m_Movie = _order.m_Movie;
     Ticket->m_NumOfVisitor = _order.m_NumOfVisitor;
     Ticket->m_TimeOfMovie = _order.m_TimeOfMovie;
-    Ticket->m_Name = _order.m_Name;
+    Ticket->m_pName = _order.m_pName;
 
-    return *Ticket;
+    CProcessing_Office::GetInstance().ReduceSeatsAt(Ticket->m_NumOfVisitor, static_cast<ETimes>(Ticket->m_TimeOfMovie), static_cast<EMovies>(Ticket->m_Movie));
+    CReceiving_Office::GetInstance().PutTicketInStorage(*Ticket);
+    ///////////////////7
 }
 
 void CTicket_Office::DeleteOrder(SOrder& _order)

@@ -127,8 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="application.h" />
-    <ClInclude Include="customer.h" />
+    <ClInclude Include="scene.h" />
+    <ClInclude Include="person.h" />
     <ClInclude Include="movies.h" />
     <ClInclude Include="names.h" />
     <ClInclude Include="order.h" />
@@ -140,8 +140,8 @@
     <ClInclude Include="tool.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="application.cpp" />
-    <ClCompile Include="customer.cpp" />
+    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="person.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="processing_office.cpp" />
     <ClCompile Include="receiving_office.cpp" />

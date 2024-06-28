@@ -1,13 +1,12 @@
 #pragma once
-
+#include <string>
 enum class ETimes;
 enum class EMovies;
-enum class ENames;
 
 struct STicket
 {
 	int m_NumOfVisitor;
 	ETimes m_TimeOfMovie;
 	EMovies m_Movie;
-	ENames m_Name;
+	std::string m_pName;
 };

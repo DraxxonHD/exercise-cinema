@@ -1,30 +1,30 @@
 #pragma once
+#include <string>
 
 enum class EMovies;
-enum class ENames;
 enum class ETimes;
 struct STicket;
 
-class CCustomer
+class CPerson
 {
 public:
 
 	void SetNumOfVisitor(int _NumOfVisitor);
 	void SetTimeOfMovie(ETimes _TimeOfMovie);
 	void SetMovie(EMovies _movie);
-	void SetName(ENames _name);
+	void SetName(std::string _name);
 	void SetTicket(STicket& _ticket);
 
 	int GetNumOfVisitor();
 	ETimes GetTimeOfMovie();
 	EMovies GetMovie();
-	ENames GetName();
+	std::string GetName();
 	STicket* GetTicket();
 private:
 
 	int m_NumOfVisitor;
 	ETimes m_TimeOfMovie;
 	EMovies m_Movie;
-	ENames m_Name;
+	std::string m_pName;
 	STicket* m_Ticket;
 };

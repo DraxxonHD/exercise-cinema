@@ -1,12 +1,12 @@
 #pragma once
 
-class CCustomer;
+class CPerson;
 class CReceiving_Office;
 class CProcessing_Office;
 class CTicket_Office;
 
 
-class CApplication
+class CScene
 {
 public:
 
@@ -16,9 +16,9 @@ public:
 
 public:
 
-	static constexpr int s_NumOfCustomer = 50;
+	static constexpr int s_NumOfPerson = 50;
 private:
 
-	CCustomer* m_pCustomers[s_NumOfCustomer];
+	CPerson* m_pPersons[s_NumOfPerson];
 
 };

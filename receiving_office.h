@@ -1,9 +1,8 @@
 #pragma once
-
+#include <string>
 
 enum class ETimes;
 enum class EMovies;
-enum class ENames;
 
 struct SOrder;
 struct STicket;
@@ -17,11 +16,14 @@ public:
 
 public:
 
-	SOrder& CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, ENames _name);
-	STicket* PickUpTicket(ENames _name);
+	void CreateOrder(int _NumOfVisitor, ETimes _TimeOfMovie, EMovies _Movie, std::string _pname);
+	STicket* PickUpTicket(std::string _pname);
 	STicket** GetTicketStorage();
+	bool IsTicketStorageFull();
 
 	void PutTicketInStorage(STicket& _ticket);
+	void IncrementStorageSize();
+	void DecrementStorageSize();
 
 private:
 
@@ -33,7 +35,7 @@ private:
 
 	static CReceiving_Office* s_pSingleton;
 
-	static constexpr int s_StorageCapacity = 20;
+	static constexpr int s_StorageCapacity = 5;
 private:
 
 	STicket* m_TicketStorage[s_StorageCapacity];
